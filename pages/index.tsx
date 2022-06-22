@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, FormLabel, Input, InputGroup, InputRightElement, SimpleGrid, Stack, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormLabel, Input, InputGroup, InputRightElement, SimpleGrid, useToast } from "@chakra-ui/react";
 import { AlertForm } from "components";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,10 +8,9 @@ import { generate } from "randomstring";
 import axios from "axios";
 
 export default function Home() {
+  const [serverUrl, setServerUrl] = useState<string>("")
   const [showBotToken, setShowBotToken] = useState(false)
-  const [showSignalChannelId, setShowSignalChannelId] = useState(false)
   const [botToken, setBotToken] = useState<string>("")
-  const [channelSignalId, setChannelSignalId] = useState<string>("")
 
   const toast = useToast()
   const dispatch = useDispatch()
@@ -39,9 +38,9 @@ export default function Home() {
     })
 
     const result = await axios.post("/api", {
-      botToken, channelSignalId, channels: { ...data }
+      botToken, serverUrl, channels: { ...data }
     })
-    
+
     if (result.data.ok) {
       toast({
         title: `Tool start`,
@@ -68,6 +67,26 @@ export default function Home() {
 
         <SimpleGrid columns={1} spacingY={5} w={{ base: "20rem", md: "40rem" }}>
           <FormControl>
+            <FormLabel htmlFor='bot-token'>Nhập Server Url: </FormLabel>
+            <InputGroup size='md'>
+              <Input
+                pr='4.5rem'
+                type={showBotToken ? 'text' : 'password'}
+                placeholder='Enter token'
+                id="bot-token"
+                value={serverUrl}
+                onChange={e => setServerUrl(e.target.value)}
+                required={true}
+              />
+              <InputRightElement width='4.5rem'>
+                <Button h='1.75rem' size='sm' onClick={() => setShowBotToken(!showBotToken)}>
+                  {showBotToken ? 'Hide' : 'Show'}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </FormControl>
+
+          <FormControl>
             <FormLabel htmlFor='bot-token'>Nhập bot token: </FormLabel>
             <InputGroup size='md'>
               <Input
@@ -86,25 +105,6 @@ export default function Home() {
             </InputGroup>
           </FormControl>
 
-          <FormControl>
-            <FormLabel htmlFor='signal-channel-id'>Nhập id channel nhận tín hiệu: </FormLabel>
-            <InputGroup size='md'>
-              <Input
-                pr='4.5rem'
-                type={showSignalChannelId ? 'text' : 'password'}
-                placeholder='Enter id signal channel'
-                id="signal-channel-id"
-                value={channelSignalId}
-                onChange={e => setChannelSignalId(e.target.value)}
-              />
-              <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={() => setShowSignalChannelId(!showSignalChannelId)}>
-                  {showSignalChannelId ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-          </FormControl>
-
           <br />
           {
             channels.map(channel => {
@@ -115,7 +115,7 @@ export default function Home() {
 
           <Flex justify="space-between">
             <Button colorScheme="teal" onClick={addChannel}>Thêm channel</Button>
-            <Button colorScheme="teal" onClick={startTool}>Start tool</Button>
+            <Button colorScheme="teal" onClick={startTool}>Bắt đầu</Button>
           </Flex>
         </SimpleGrid>
       </Flex>

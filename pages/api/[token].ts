@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-// import { cache } from 'server/cache'
+import { AlertJob } from 'services/AlertJob'
 
 type Data = {
     ok: boolean,
@@ -7,9 +7,11 @@ type Data = {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-    const { token } = req.query
+    const tradingviewWebhookText = req.body
 
-    // console.log("ahihi: ",await cache.get(token as string))
+    if (typeof tradingviewWebhookText === "string") {
+        AlertJob.pushSignal(tradingviewWebhookText)
+    }
 
-    return res.status(200).json({ ok: true, data: req.body })
+    return res.status(200).json({ ok: true, data: { tradingviewWebhookText } })
 }
