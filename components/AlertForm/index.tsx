@@ -44,7 +44,7 @@ export const AlertForm: React.FC<Props> = ({ channelId = "", delay = "0", random
         </FormControl>
 
         <FormControl mx={5}>
-            <FormLabel htmlFor={`${randomId}-delay`}>Nhập thời gian delay(ms): </FormLabel>
+            <FormLabel htmlFor={`${randomId}-delay`}>Nhập thời gian delay(s): </FormLabel>
             <NumberInput min={0}>
                 <NumberInputField id={`${randomId}-delay`} value={currDelay} onChange={e => setCurrDelay(e.target.value)} disabled={!currEdit} />
                 <NumberInputStepper>
