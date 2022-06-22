@@ -1,8 +1,5 @@
-2022/06/22-15:20:25.412 2dcc Recovering log #80
-2022/06/22-15:20:25.414 2dcc Level-0 table #83: started
-2022/06/22-15:20:25.417 2dcc Level-0 table #83: 134674 bytes OK
-2022/06/22-15:20:25.421 2dcc Delete type=0 #15
-2022/06/22-15:20:25.421 2dcc Delete type=2 #16
-2022/06/22-15:20:25.422 2dcc Delete type=0 #80
-2022/06/22-15:20:25.422 2dcc Delete type=3 #13
-2022/06/22-15:20:25.422 2dcc Delete type=3 #78
+2022/06/22-15:35:58.066 62a0 Recovering log #87
+2022/06/22-15:35:58.070 62a0 Level-0 table #89: started
+2022/06/22-15:35:58.075 62a0 Level-0 table #89: 181936 bytes OK
+2022/06/22-15:35:58.079 62a0 Delete type=0 #87
+2022/06/22-15:35:58.079 62a0 Delete type=3 #85

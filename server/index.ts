@@ -20,6 +20,6 @@ app.prepare().then(() => {
   })
 
   server.listen(port, async () => {
-    console.log('🚀 app running on port', process.env.PORT || 5000)
+    console.log(`🚀 app running http://localhost:${process.env.PORT || 5000}`)
   })
 })
