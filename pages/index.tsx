@@ -9,6 +9,7 @@ import axios from "axios";
 
 export default function Home() {
   const [serverUrl, setServerUrl] = useState<string>("")
+  const [showServerUrl, setShowServerUrl] = useState(false)
   const [showBotToken, setShowBotToken] = useState(false)
   const [botToken, setBotToken] = useState<string>("")
 
@@ -71,7 +72,7 @@ export default function Home() {
             <InputGroup size='md'>
               <Input
                 pr='4.5rem'
-                type={showBotToken ? 'text' : 'password'}
+                type={showServerUrl ? 'text' : 'password'}
                 placeholder='Enter token'
                 id="bot-token"
                 value={serverUrl}
@@ -79,8 +80,8 @@ export default function Home() {
                 required={true}
               />
               <InputRightElement width='4.5rem'>
-                <Button h='1.75rem' size='sm' onClick={() => setShowBotToken(!showBotToken)}>
-                  {showBotToken ? 'Hide' : 'Show'}
+                <Button h='1.75rem' size='sm' onClick={() => setShowServerUrl(!showBotToken)}>
+                  {showServerUrl ? 'Hide' : 'Show'}
                 </Button>
               </InputRightElement>
             </InputGroup>
